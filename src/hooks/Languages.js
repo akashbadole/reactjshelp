@@ -4,15 +4,16 @@ import InputCustomHook from "./InputCustomHook";
 
 const Languages = () => {
     const [computerLanguages, setComputerLanguges] = useState([
-        {id:1, name:"PHP"},
-        {id:2, name:"Python"},
-        {id:3, name:"Laravel"},
-        {id:4, name:"Java"},
-        {id:5, name:"C++"},
-        {id:6, name:"reactjs"}
+        {id:1, name:"PHP",email:"example@gmail.com"},
+        {id:2, name:"Python",email:"example@yahoo.com"},
+        {id:3, name:"Laravel",email:"example@oil.com"},
+        {id:4, name:"Java",email:"example@rediff.com"},
+        {id:5, name:"C++",email:"example@protonmail.com"},
+        {id:6, name:"reactjs",email:"example@github.com"}
     ]);
     // const [name, setName] = useState("");
-    const [name, setName, clear] = InputCustomHook("");
+    const [name, setName, clearName] = InputCustomHook("");
+    const [email, setEmail, clearEmail] = InputCustomHook("");
 
     // const inputHandle = e =>{
     //     setName(e.target.value);
@@ -25,8 +26,9 @@ const Languages = () => {
 
      const addLanguages =(e) =>{
         e.preventDefault();
-        setComputerLanguges([...computerLanguages, {id:uuidv4(), name:name}]);
-        clear();
+        setComputerLanguges([...computerLanguages, {id:uuidv4(), name:name, email:email}]);
+        clearName();
+        clearEmail();
     }
 
 
@@ -44,13 +46,14 @@ const Languages = () => {
                         <tr key={language.id}>
                             <td>{language.id}</td>
                             <td>{language.name}</td>
+                            <td>{language.email}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <form onSubmit={addLanguages}>
             <input type="text" className="" onChange={setName} value={name} placeholder="Add Languages" />
-
+            <input type="email" className="" value={email} onChange={setEmail} placeholder="Email " />
             <input type="submit" className="btnclass"  value="submit"  />
             </form>
         </React.Fragment>
